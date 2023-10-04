@@ -1,8 +1,44 @@
 #VFeedback {
+    width: var(--width);
+    height: var(--height);
+    padding: var(--padding);
     position: fixed;
-    bottom: 0;
-    right: 0;
-    padding: 50px;
-    background: #f7f7f7;
-    border-radius: 10px;
+    display: block;
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+}
+
+.bottomRight {
+    right: 10px;
+    bottom: 10px
+}
+
+.bottomLeft {
+    left: 10px;
+    bottom: 10px
+}
+
+.topRight {
+    right: 10px;
+    top: 10px
+}
+
+.topLeft {
+    left: 10px;
+    top: 10px
+}
+
+.bottomCenter {
+    bottom: 10px;
+    left: calc(50% - var(--width) / 2);
+}
+
+.topCenter {
+    top: 10px;
+    left: calc(50% - var(--width) / 2);
+}
+
+.center {
+    top: calc(50% - var(--height) / 2);
+    left: calc(50% - var(--width) / 2);
 }

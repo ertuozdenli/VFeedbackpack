@@ -2,12 +2,12 @@
 
 <template>
   hello <br />
-  <VFeedback></VFeedback>
+  <VFeedback :options="{ position: 'center' }"></VFeedback>
 </template>
 
 <style>
-body{
-  background:#1a1a1a;
+body {
+  background: #1a1a1a;
 }
 header {
   line-height: 1.5;
