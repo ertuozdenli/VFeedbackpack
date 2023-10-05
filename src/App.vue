@@ -2,12 +2,13 @@
 
 <template>
   hello <br />
-  <VFeedback :options="{ position: 'center' }"></VFeedback>
+  <VFeedback :options="{ position: 'bottomRight' }"></VFeedback>
 </template>
 
 <style>
 body {
-  background: #1a1a1a;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 header {
   line-height: 1.5;
