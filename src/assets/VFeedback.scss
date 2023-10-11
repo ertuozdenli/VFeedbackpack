@@ -1,6 +1,6 @@
 #VFeedback {
     width: var(--width);
-    height: var(--height);
+    min-height: var(--height);
     padding: var(--padding);
     background: var(--bg-color);
     border-radius: var(--border-radius);
@@ -16,8 +16,20 @@
     .question {
         font-weight: bold;
 
-        .option {
-            display: block;
+        .options {
+            margin: 10px 0px;
+
+            .option {
+                display: block;
+                margin-top: 7px;
+                line-height: 24px;
+                display: flex;
+                gap: 5px;
+
+                label {
+                    flex: 1;
+                }
+            }
         }
     }
 }
@@ -29,6 +41,12 @@
     border-radius: var(--border-radius);
     background: var(--button-background-color);
     color: var(--button-label-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: color-mix(in srgb, var(--button-background-color), #fff 15%);
+    }
 }
 
 // Positions

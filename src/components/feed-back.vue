@@ -2,6 +2,7 @@
 import type { Options } from '@/components/types/options'
 import type { Question } from '@/components/types/question'
 import { ref, computed } from 'vue'
+import checkCircle from '@/components/icons/IconCheck.vue'
 
 const props = defineProps<{
   options: Options
@@ -39,13 +40,15 @@ const defaultQuestions = [
   {
     type: 'multi',
     label: '2.Did you liked v-feedback?',
-    options: ['yes', 'no']
+    options: ['yes', 'no', 'hell no']
   }
 ]
 
 const options = { ...defaultOptions, ...props.options }
 const questions = props.questions || defaultQuestions
+
 const activeQuestionIndex = ref(0)
+const answers = ref<Number[]>([])
 
 const getOptionSlug = computed((activeQuestionIndex) => {
   return 'option' + activeQuestionIndex
@@ -61,8 +64,9 @@ const getOptionSlug = computed((activeQuestionIndex) => {
           class="option"
           v-for="(option, index) in questions[activeQuestionIndex].options"
           :key="index"
+          @click="answers[activeQuestionIndex] = index"
         >
-          <input type="radio" :value="index" :name="getOptionSlug" :id="getOptionSlug + index" />
+          <check-circle class="check-circle" :checked="answers[activeQuestionIndex] === index" />
           <label :for="getOptionSlug + index">
             {{ option }}
           </label>
