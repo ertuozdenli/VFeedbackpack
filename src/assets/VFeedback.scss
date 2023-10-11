@@ -2,16 +2,36 @@
     width: var(--width);
     height: var(--height);
     padding: var(--padding);
-    position: fixed;
-    display: block;
     background: var(--bg-color);
     border-radius: var(--border-radius);
     border: var(--border-size) var(--border-type) var(--border-color);
     transform: translateX(var(--translateX)) translateY(var(--translateY));
     box-shadow: 0px 0px 10px 10px var(--shadow-color);
     font-family: inherit, Helvetica, sans-serif;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .question {
+        font-weight: bold;
+
+        .option {
+            display: block;
+        }
+    }
 }
 
+// Buttons
+.btn {
+    border: none;
+    padding: 10px 10px;
+    border-radius: var(--border-radius);
+    background: var(--button-background-color);
+    color: var(--button-label-color);
+}
+
+// Positions
 .bottomRight {
     right: 10px;
     bottom: 10px

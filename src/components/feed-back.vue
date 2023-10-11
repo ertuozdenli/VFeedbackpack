@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Options } from '@/components/types/options'
 import type { Question } from '@/components/types/question'
+import { ref, computed } from 'vue'
 
 const props = defineProps<{
   options: Options
@@ -11,7 +12,7 @@ const defaultOptions: Options = {
   position: 'bottomRight',
   width: '260px',
   height: '200px',
-  padding: '15px',
+  padding: '25px',
   borderRadius: '10px',
   isMinimized: false,
   showCloseButton: true,
@@ -34,16 +35,41 @@ const defaultQuestions = [
     type: 'multi',
     label: 'Did you liked v-feedback?',
     options: ['yes', 'no']
+  },
+  {
+    type: 'multi',
+    label: '2.Did you liked v-feedback?',
+    options: ['yes', 'no']
   }
 ]
 
 const options = { ...defaultOptions, ...props.options }
 const questions = props.questions || defaultQuestions
+const activeQuestionIndex = ref(0)
+
+const getOptionSlug = computed((activeQuestionIndex) => {
+  return 'option' + activeQuestionIndex
+})
 </script>
 
 <template>
   <div id="VFeedback" :class="[options.position, { 'no-shadow': options.noShadow }]">
-    {{ questions[0].label }}
+    <div class="question">
+      <span class="label">{{ questions[activeQuestionIndex].label }}</span>
+      <div class="options">
+        <div
+          class="option"
+          v-for="(option, index) in questions[activeQuestionIndex].options"
+          :key="index"
+        >
+          <input type="radio" :value="index" :name="getOptionSlug" :id="getOptionSlug + index" />
+          <label :for="getOptionSlug + index">
+            {{ option }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-next" @click="activeQuestionIndex += 1">Next</button>
   </div>
 </template>
 
@@ -61,5 +87,7 @@ const questions = props.questions || defaultQuestions
   --border-size: v-bind(options.borderSize);
   --border-type: v-bind(options.borderType);
   --shadow-color: v-bind(options.shadowColor);
+  --button-background-color: v-bind(options.buttonBackgroundColor);
+  --button-label-color: v-bind(options.buttonLabelColor);
 }
 </style>
