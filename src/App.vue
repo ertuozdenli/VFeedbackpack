@@ -1,39 +1,44 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, watchEffect } from 'vue'
+
+const positions = [
+  { value: 'topLeft', label: 'Top Left' },
+  { value: 'topRight', label: 'Top Right' },
+  { value: 'bottomLeft', label: 'Bottom Left' },
+  { value: 'bottomRight', label: 'Bottom Right' },
+  { value: 'center', label: 'Center' }
+]
+const options = ref({
+  position: 'bottomRight',
+  hasBorder: false
+})
+let a = (Math.random() * 1000 + 100).toFixed()
+
+watchEffect(() => {
+  a += 1
+})
+</script>
 
 <template>
-  hello <br />
-  <VFeedback :options="{ position: 'center' }"></VFeedback>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <select v-model="options.position" class="form-select">
+            <option v-for="(position, index) in positions" :key="index" :value="position.value">
+              {{ position.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <highlightjs class="code" autodetect :code="JSON.stringify(options, null, 2)" />
+      </div>
+    </div>
+  </div>
+  <VFeedback :options="options"></VFeedback>
 </template>
 
 <style>
-body {
-  background: #1a1a1a;
-  font-family: Arial, Helvetica, sans-serif;
-}
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+@import '@/assets/Sample.scss';
 </style>

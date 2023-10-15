@@ -1,3 +1,5 @@
+import type { Labels } from "./labels";
+
 export type Options = {
     // General
     position: String,
@@ -19,6 +21,8 @@ export type Options = {
     borderSize: String,
     borderType: String,
     shadowColor: String,
-    noShadow: Boolean
+    noShadow: Boolean,
+    // Internationalization
+    labels: Labels
 }
 

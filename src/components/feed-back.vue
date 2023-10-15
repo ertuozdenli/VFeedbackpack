@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { ref, toRef, computed, watchEffect } from 'vue'
+// Types
 import type { Options } from '@/components/types/options'
 import type { Question } from '@/components/types/question'
-import { ref, computed } from 'vue'
+
+// Components
 import checkCircle from '@/components/icons/IconCheck.vue'
+import thankYou from '@/components/thank-you.vue'
 
 const props = defineProps<{
   options: Options
@@ -11,7 +15,7 @@ const props = defineProps<{
 
 const defaultOptions: Options = {
   position: 'bottomRight',
-  width: '260px',
+  width: '310px',
   height: '200px',
   padding: '25px',
   borderRadius: '10px',
@@ -27,14 +31,15 @@ const defaultOptions: Options = {
   borderColor: '#f0f0f0',
   borderSize: '1px',
   borderType: 'solid',
-  noShadow: true,
-  shadowColor: '#1a1a1a08'
+  noShadow: false,
+  shadowColor: '#1a1a1a08',
+  labels: { nextButton: 'Next' }
 }
 
 const defaultQuestions = [
   {
     type: 'multi',
-    label: 'Did you liked v-feedback?',
+    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
     options: ['yes', 'no']
   },
   {
@@ -44,13 +49,18 @@ const defaultQuestions = [
   }
 ]
 
-const options = { ...defaultOptions, ...props.options }
+let options = ref({ ...defaultOptions, ...props.options })
+
+watchEffect(() => {
+  options.value = { ...defaultOptions, ...props.options }
+})
+
 const questions = props.questions || defaultQuestions
 
 const activeQuestionIndex = ref(0)
-const answers = ref<Number[]>([])
+const answers = ref<String | Number[]>([])
 
-const getOptionSlug = computed((activeQuestionIndex) => {
+const optionSlug = computed((activeQuestionIndex) => {
   return 'option' + activeQuestionIndex
 })
 </script>
@@ -67,13 +77,20 @@ const getOptionSlug = computed((activeQuestionIndex) => {
           @click="answers[activeQuestionIndex] = index"
         >
           <check-circle class="check-circle" :checked="answers[activeQuestionIndex] === index" />
-          <label :for="getOptionSlug + index">
+          <label :for="optionSlug + index">
             {{ option }}
           </label>
         </div>
       </div>
     </div>
-    <button class="btn btn-next" @click="activeQuestionIndex += 1">Next</button>
+    <button
+      class="btn btn-next"
+      :disabled="typeof answers[activeQuestionIndex] === 'undefined'"
+      @click="activeQuestionIndex += 1"
+    >
+      {{ options.labels.nextButton }}
+    </button>
+    <thankYou />
   </div>
 </template>
 
