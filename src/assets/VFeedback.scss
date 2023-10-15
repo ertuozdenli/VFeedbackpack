@@ -60,6 +60,17 @@
     }
 }
 
+.thank-you {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    font-weight: bold;
+}
+
+
 // Positions
 .bottomRight {
     right: 10px;
