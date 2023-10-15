@@ -8,72 +8,69 @@ import type { Question } from '@/components/types/question'
 import checkCircle from '@/components/icons/IconCheck.vue'
 import thankYou from '@/components/thank-you.vue'
 
+// Defaults
+import { defaultOptions } from './defaultOptions'
+import { defaultQuestions } from './defaultQuestions'
+
 const props = defineProps<{
   options: Options
   questions: Array<Question>
 }>()
 
-const defaultOptions: Options = {
-  position: 'bottomRight',
-  width: '310px',
-  height: '200px',
-  padding: '25px',
-  borderRadius: '10px',
-  isMinimized: false,
-  showCloseButton: true,
-  hasBorder: true,
-  backgroundColor: '#fff',
-  textColor: '#1a1a1a',
-  buttonBackgroundColor: '#41B883',
-  buttonLabelColor: '#fff',
-  translateX: '0px',
-  translateY: '0px',
-  borderColor: '#f0f0f0',
-  borderSize: '1px',
-  borderType: 'solid',
-  noShadow: false,
-  shadowColor: '#1a1a1a08',
-  labels: { buttonNext: 'Next', buttonSend: 'Send' }
-}
-
-const defaultQuestions: Array<Object> = [
-  {
-    type: 'multi',
-    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-    options: ['yes', 'no']
-  },
-  {
-    type: 'multi',
-    label: '2.Did you liked v-feedback?',
-    options: ['yes', 'no', 'hell no']
-  }
-]
-
 let options = ref({ ...defaultOptions, ...props.options })
 
+// Definitions
+const questions = props.questions || defaultQuestions
+let activeQuestionIndex = ref(0)
+let answers = ref<String | Number[]>([])
+let isFeedbackEnd = ref<Boolean>(false)
+
+// Watch
 watchEffect(() => {
   options.value = { ...defaultOptions, ...props.options }
 })
 
-const questions = props.questions || defaultQuestions
-
-const activeQuestionIndex = ref(0)
-const answers = ref<String | Number[]>([])
-
-const optionSlug = computed((activeQuestionIndex) => {
-  return 'option' + activeQuestionIndex
+// Computed Properties
+const optionSlug = computed(() => {
+  return 'option' + activeQuestionIndex.value
 })
 
 const buttonLabel = computed(() => {
-  return activeQuestionIndex.value < questions.length - 1
-    ? options.value.labels.buttonNext
-    : options.value.labels.buttonSend
+  let buttonLabel = options.value.labels.buttonNext
+
+  if (activeQuestionIndex.value === questions.length - 1) {
+    buttonLabel = options.value.labels.buttonSend
+  }
+
+  if (isFeedbackEnd.value) {
+    buttonLabel = options.value.labels.buttonClose
+  }
+
+  return buttonLabel
 })
+
+// Functions
+function nextStep() {
+  if (activeQuestionIndex.value !== questions.length - 1) {
+    activeQuestionIndex.value++
+    return
+  }
+  if (isFeedbackEnd.value) {
+    options.value.active = false
+    return
+  }
+  isFeedbackEnd.value = true
+}
 </script>
 
 <template>
-  <div id="VFeedback" :class="[options.position, { 'no-shadow': options.noShadow }]">
-    <div class="question">
+  <div
+    id="VFeedback"
+    :class="[options.position, { 'no-shadow': options.noShadow }]"
+    v-if="options.active"
+  >
+    <thankYou v-if="isFeedbackEnd" />
+    <div class="question" v-if="!isFeedbackEnd">
       <span class="label">{{ questions[activeQuestionIndex].label }}</span>
       <div class="options">
         <div
@@ -92,11 +89,10 @@ const buttonLabel = computed(() => {
     <button
       class="btn btn-next"
       :disabled="typeof answers[activeQuestionIndex] === 'undefined'"
-      @click="activeQuestionIndex += 1"
+      @click="nextStep()"
     >
       {{ buttonLabel }}
     </button>
-    <thankYou />
   </div>
 </template>
 

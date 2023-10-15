@@ -1,4 +1,5 @@
 export type Labels = {
-    buttonNext: String
-    buttonSend: String
+    buttonNext: String,
+    buttonSend: String,
+    buttonClose: String
 }

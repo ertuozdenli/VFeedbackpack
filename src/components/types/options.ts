@@ -6,6 +6,7 @@ export type Options = {
     isMinimized: Boolean,
     showCloseButton: Boolean,
     hasBorder: Boolean,
+    active: Boolean,
     // Theming
     width: String,
     height: String,
