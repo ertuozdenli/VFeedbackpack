@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRef, computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 // Types
 import type { Options } from '@/components/types/options'
 import type { Question } from '@/components/types/question'
@@ -33,10 +33,10 @@ const defaultOptions: Options = {
   borderType: 'solid',
   noShadow: false,
   shadowColor: '#1a1a1a08',
-  labels: { nextButton: 'Next' }
+  labels: { buttonNext: 'Next', buttonSend: 'Send' }
 }
 
-const defaultQuestions = [
+const defaultQuestions: Array<Object> = [
   {
     type: 'multi',
     label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
@@ -63,6 +63,12 @@ const answers = ref<String | Number[]>([])
 const optionSlug = computed((activeQuestionIndex) => {
   return 'option' + activeQuestionIndex
 })
+
+const buttonLabel = computed(() => {
+  return activeQuestionIndex.value < questions.length - 1
+    ? options.value.labels.buttonNext
+    : options.value.labels.buttonSend
+})
 </script>
 
 <template>
@@ -88,7 +94,7 @@ const optionSlug = computed((activeQuestionIndex) => {
       :disabled="typeof answers[activeQuestionIndex] === 'undefined'"
       @click="activeQuestionIndex += 1"
     >
-      {{ options.labels.nextButton }}
+      {{ buttonLabel }}
     </button>
     <thankYou />
   </div>
