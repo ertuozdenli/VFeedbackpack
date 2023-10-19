@@ -12,7 +12,8 @@ const positions = [
 ]
 const options = ref({
   position: 'bottomRight',
-  hasBorder: false
+  hasBorder: false,
+  buttonBackgroundColor: '#41B883'
 })
 </script>
 
@@ -20,14 +21,19 @@ const options = ref({
   <div class="container">
     <div class="row">
       <div class="col">
-        
-        <label for="position" class="form-label">Position</label>
-        <select id="position" v-model="options.position" class="form-select">
-          <option v-for="(position, index) in positions" :key="index" :value="position.value">
-            {{ position.label }}
-          </option>
-        </select>
-        
+        <div class="row">
+          <label for="position" class="form-label">Position</label>
+          <select id="position" v-model="options.position" class="form-select">
+            <option v-for="(position, index) in positions" :key="index" :value="position.value">
+              {{ position.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row my-3">
+          <label for="position" class="form-label">Button Background Color</label>
+          <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
+        </div>
       </div>
       <div class="col">
         <highlightjs class="code" autodetect :code="JSON.stringify(options, null, 2)" />
