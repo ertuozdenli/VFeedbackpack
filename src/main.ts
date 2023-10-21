@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import vFeedback from './VFeedback'
-import 'highlight.js/styles/stackoverflow-dark.min.css'
+import 'highlight.js/styles/stackoverflow-light.min.css'
 
 import hljs from 'highlight.js';
 import hljsVuePlugin from "@highlightjs/vue-plugin";

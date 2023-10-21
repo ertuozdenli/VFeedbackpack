@@ -13,17 +13,20 @@
     flex-direction: column;
     justify-content: space-between;
 
+
     .question {
         font-weight: bold;
+        line-height: 1.4em;
 
         .options {
             margin: 10px 0px;
 
             .option {
                 display: block;
-                margin-top: 7px;
+                margin-top: 0.2em;
                 padding: 3px 0px;
                 display: flex;
+                align-items: center;
                 gap: 4px;
                 font-weight: normal;
                 cursor: pointer;

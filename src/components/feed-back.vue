@@ -12,6 +12,9 @@ import thankYou from '@/components/thank-you.vue'
 import { defaultOptions } from './defaultOptions'
 import { defaultQuestions } from './defaultQuestions'
 
+// Emits
+const emit = defineEmits(['answered', 'done'])
+
 const props = defineProps<{
   options: Options
   questions: Array<Question>
@@ -51,14 +54,31 @@ const buttonLabel = computed(() => {
 
 // Functions
 function nextStep() {
-  if (activeQuestionIndex.value !== questions.length - 1) {
-    activeQuestionIndex.value++
-    return
-  }
   if (isFeedbackEnd.value) {
     options.value.active = false
     return
   }
+
+  let index = activeQuestionIndex.value
+  let data = {
+    questionIndex: activeQuestionIndex.value,
+    questionType: questions[index].type,
+    answerIndex: answers.value[index]
+  }
+  emit('answered', data)
+
+  if (activeQuestionIndex.value !== questions.length - 1) {
+    activeQuestionIndex.value++
+    return
+  }
+
+  if (activeQuestionIndex.value === questions.length - 1) {
+    let data = questions.map((q, index) => {
+      return { ...q, answerIndex: answers.value[index] }
+    })
+    emit('done', data)
+  }
+
   isFeedbackEnd.value = true
 }
 </script>
