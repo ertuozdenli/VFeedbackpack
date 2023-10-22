@@ -15,8 +15,8 @@ let events = ref<String>('')
 
 const options = ref({
   position: 'bottomCenter',
-  width: '310px',
-  height: '200px',
+  width: '350px',
+  height: '240px',
   padding: '25px',
   borderRadius: '10px',
   isMinimized: false,
@@ -48,19 +48,25 @@ function done(value: Object) {
   <div class="container">
     <img class="logo" src="@/assets/images/v-feedback-logo.svg" alt="V-feedback Logo" />
     <div class="row">
-      <div class="col">
-        <div class="row">
-          <label for="position" class="form-label">Position</label>
-          <select id="position" v-model="options.position" class="form-select">
-            <option v-for="(position, index) in positions" :key="index" :value="position.value">
-              {{ position.label }}
-            </option>
-          </select>
-        </div>
+      <div class="col position-relative">
+        <label for="position" class="form-label">Position</label>
+        <select id="position" v-model="options.position" class="form-select">
+          <option v-for="(position, index) in positions" :key="index" :value="position.value">
+            {{ position.label }}
+          </option>
+        </select>
 
-        <div class="row my-3">
+        <div class="my-3">
           <label for="position" class="form-label">Button Background Color</label>
           <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label">Width</label>
+          <input type="number" class="form-control" min="80" max="500" v-model="options.width" />
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label">Height</label>
+          <input type="number" class="form-control" min="80" max="500" v-model="options.height" />
         </div>
       </div>
       <div class="col">

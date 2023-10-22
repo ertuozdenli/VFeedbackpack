@@ -2,8 +2,8 @@ import type { Options } from '@/components/types/options';
 
 export const defaultOptions: Options = {
     position: 'bottomRight',
-    width: '310px',
-    height: '200px',
+    width: '350px',
+    height: '240px',
     padding: '25px',
     borderRadius: '10px',
     isMinimized: false,
