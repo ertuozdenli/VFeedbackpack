@@ -14,7 +14,7 @@ const positions = [
 let events = ref<String>('')
 
 const options = ref({
-  position: 'bottomCenter',
+  position: 'bottomRight',
   width: '350px',
   height: '240px',
   padding: '25px',
@@ -172,6 +172,19 @@ function done(value: Object) {
         <div class="my-3">
           <label for="position" class="form-label d-block">Border Color</label>
           <input type="color" class="w-25" v-model="options.borderColor" />
+        </div>
+        <div class="form-check my-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="noShadow"
+            v-model="options.noShadow"
+          />
+          <label class="form-check-label" for="noShadow"> Remove Shadow </label>
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Shadow Color</label>
+          <input type="color" class="w-25" v-model="options.shadowColor" />
         </div>
       </div>
       <div class="col">

@@ -80,11 +80,26 @@ body {
             background-color: #41B883;
         }
 
+        &::-webkit-slider-runnable-track {
+            background-color: #f7f7f750;
+            height: 2px;
+            transform: translateY(2px);
+        }
+
         &::-webkit-slider-thumb {
             background-color: #41B883;
+            transform: translateY(-2px);
         }
+
+        &[type=color] {
+            border: none;
+            margin-left: -3px;
+        }
+
+        &[type=checkbox] {
+            border: 1px solid #ccc;
+        }
+
     }
-
-
 
 }
