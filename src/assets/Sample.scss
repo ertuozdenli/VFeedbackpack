@@ -18,7 +18,7 @@ html,
 body {
     background: #1a1a1a;
     font-family: Arial, Helvetica, sans-serif;
-    color: #f7f7f7;
+    color: #767676;
 }
 
 * {
@@ -34,6 +34,14 @@ body {
 .code {
     margin: 0px;
 
+    &.npm {
+        code {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #242424;
+        }
+    }
+
     code {
         line-height: 20px;
         border-radius: 5px !important;
@@ -43,8 +51,9 @@ body {
 
 .form-label {
     padding: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: block;
+    font-size: 14px;
 }
 
 .logo {

@@ -34,7 +34,12 @@ const options = ref({
   borderType: 'solid',
   noShadow: false,
   shadowColor: '#1a1a1a08',
-  labels: { buttonNext: 'Next', buttonSend: 'Send', buttonClose: 'Close' }
+  labels: {
+    buttonNext: 'Next',
+    buttonSend: 'Send',
+    buttonClose: 'Close',
+    thankYou: 'Thank you!'
+  }
 })
 
 let wrapperWidth = ref('350')
@@ -93,7 +98,15 @@ function done(value: Object) {
     <p class="text-center my-5">
       Fully customizable multi-question feedback component with diverse question types.
     </p>
-    <div class="row gap-3">
+    <div class="text-center">
+      <highlightjs class="code npm my-5" :code="'npm install v-feedback@latest'" />
+      <highlightjs
+        language="html"
+        class="code npm my-5"
+        code='<v-feedback :options="options" :questions="questions">'
+      />
+    </div>
+    <div class="row gap-3 my-5">
       <div class="col position-relative">
         <div class="form-check my-3">
           <input class="form-check-input" type="checkbox" id="isACtive" v-model="options.active" />
@@ -106,6 +119,23 @@ function done(value: Object) {
             {{ position.label }}
           </option>
         </select>
+
+        <div class="my-3">
+          <label class="form-label">Next Button Label</label>
+          <input type="text" class="form-control" v-model="options.labels.buttonNext" />
+        </div>
+        <div class="my-3">
+          <label class="form-label">Send Button Label</label>
+          <input type="text" class="form-control" v-model="options.labels.buttonSend" />
+        </div>
+        <div class="my-3">
+          <label class="form-label">Close Button Label</label>
+          <input type="text" class="form-control" v-model="options.labels.buttonClose" />
+        </div>
+        <div class="my-3">
+          <label class="form-label">Thank You Message</label>
+          <input type="text" class="form-control" v-model="options.labels.thankYou" />
+        </div>
 
         <div class="my-3">
           <label for="translateX" class="form-label">Translate X</label>
@@ -196,6 +226,7 @@ function done(value: Object) {
         <highlightjs class="code" autodetect :code="events" />
       </div>
     </div>
+    <div class="text-center my-5">Created by @ertuozdenli with ❤️</div>
   </div>
   <VFeedback :options="options" @answered="answered" @done="done"></VFeedback>
 </template>

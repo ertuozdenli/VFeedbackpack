@@ -93,7 +93,7 @@ function nextStep() {
     ]"
     v-if="options.active"
   >
-    <thankYou v-if="isFeedbackEnd" />
+    <thankYou v-if="isFeedbackEnd" :label="options.labels.thankYou" />
     <div class="question" v-if="!isFeedbackEnd">
       <span class="label">{{ questions[activeQuestionIndex].label }}</span>
       <div class="options">

@@ -21,5 +21,5 @@ export const defaultOptions: Options = {
     borderType: 'solid',
     noShadow: false,
     shadowColor: '#1a1a1a08',
-    labels: { buttonNext: 'Next', buttonSend: 'Send', buttonClose: 'Close' }
+    labels: { buttonNext: 'Next', buttonSend: 'Send', buttonClose: 'Close', thankYou: 'Thank you!' }
 };
