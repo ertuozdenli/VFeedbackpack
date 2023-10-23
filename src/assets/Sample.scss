@@ -16,8 +16,9 @@ html,
 }
 
 body {
-    background: #fff;
+    background: #1a1a1a;
     font-family: Arial, Helvetica, sans-serif;
+    color: #f7f7f7;
 }
 
 * {
@@ -27,6 +28,7 @@ body {
 #app {
     display: flex;
     justify-content: center;
+
 }
 
 .code {
@@ -41,21 +43,48 @@ body {
 
 .form-label {
     padding: 0;
-    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .logo {
     max-width: 90%;
-    width: 400px;
+    width: 340px;
     height: auto;
-    margin: 75px auto 100px auto;
+    margin: 75px auto 25px auto;
     display: block;
 }
 
 .title {
     font-weight: bold;
     font-size: 1.4em;
-    margin-bottom: 0.3em;
-    ;
+    margin-bottom: 1em;
     display: block;
+}
+
+.col {
+    background-color: #242424;
+    border-radius: 15px;
+    padding: 17px 27px;
+    box-shadow: 0px 5px 20px #24242420;
+
+    input,
+    input:focus,
+    select {
+        background-color: #242424;
+        border-color: #1a1a1a;
+        color: #ccc;
+        accent-color: #e74c3c !important;
+
+        &:checked {
+            background-color: #41B883;
+        }
+
+        &::-webkit-slider-thumb {
+            background-color: #41B883;
+        }
+    }
+
+
+
 }

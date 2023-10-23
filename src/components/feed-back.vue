@@ -86,7 +86,11 @@ function nextStep() {
 <template>
   <div
     id="VFeedback"
-    :class="[options.position, { 'no-shadow': options.noShadow }]"
+    :class="[
+      options.position,
+      { 'no-shadow': options.noShadow },
+      { 'no-border': !options.hasBorder }
+    ]"
     v-if="options.active"
   >
     <thankYou v-if="isFeedbackEnd" />
@@ -124,6 +128,7 @@ function nextStep() {
   --padding: v-bind(options.padding);
   --border-radius: v-bind(options.borderRadius);
   --bg-color: v-bind(options.backgroundColor);
+  --text-color: v-bind(options.textColor);
   --translateX: v-bind(options.translateX);
   --translateY: v-bind(options.translateY);
   --border-color: v-bind(options.borderColor);

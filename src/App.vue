@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const positions = [
   { value: 'topLeft', label: 'Top Left' },
@@ -36,6 +36,49 @@ const options = ref({
   shadowColor: '#1a1a1a08',
   labels: { buttonNext: 'Next', buttonSend: 'Send', buttonClose: 'Close' }
 })
+
+let wrapperWidth = ref('350')
+
+watch(wrapperWidth, () => {
+  options.value.width = wrapperWidth.value + 'px'
+})
+
+let wrapperHeight = ref('350')
+
+watch(wrapperHeight, () => {
+  options.value.height = wrapperHeight.value + 'px'
+})
+
+let wrapperPadding = ref('25')
+
+watch(wrapperPadding, () => {
+  options.value.padding = wrapperPadding.value + 'px'
+})
+
+let wrapperBorderRadius = ref('10')
+
+watch(wrapperBorderRadius, () => {
+  options.value.borderRadius = wrapperBorderRadius.value + 'px'
+})
+
+let wrapperBorderSize = ref('1')
+
+watch(wrapperBorderSize, () => {
+  options.value.borderSize = wrapperBorderSize.value + 'px'
+})
+
+let translateX = ref('1')
+
+watch(translateX, () => {
+  options.value.translateX = translateX.value + 'px'
+})
+
+let translateY = ref('1')
+
+watch(translateY, () => {
+  options.value.translateY = translateY.value + 'px'
+})
+
 function answered(value: Object) {
   events.value += `Emitted: answered \nEmitted Data: ${JSON.stringify(value)}\n\n`
 }
@@ -47,8 +90,16 @@ function done(value: Object) {
 <template>
   <div class="container">
     <img class="logo" src="@/assets/images/v-feedback-logo.svg" alt="V-feedback Logo" />
-    <div class="row">
+    <p class="text-center my-5">
+      Fully customizable multi-question feedback component with diverse question types.
+    </p>
+    <div class="row gap-3">
       <div class="col position-relative">
+        <div class="form-check my-3">
+          <input class="form-check-input" type="checkbox" id="isACtive" v-model="options.active" />
+          <label class="form-check-label" for="isACtive"> Active </label>
+        </div>
+
         <label for="position" class="form-label">Position</label>
         <select id="position" v-model="options.position" class="form-select">
           <option v-for="(position, index) in positions" :key="index" :value="position.value">
@@ -57,23 +108,77 @@ function done(value: Object) {
         </select>
 
         <div class="my-3">
-          <label for="position" class="form-label">Button Background Color</label>
+          <label for="translateX" class="form-label">Translate X</label>
+          <input
+            type="range"
+            class="form-range"
+            id="translateX"
+            min="-200"
+            max="200"
+            v-model="translateX"
+          />
+        </div>
+        <div class="my-3">
+          <label for="translateY" class="form-label">Translate Y</label>
+          <input
+            type="range"
+            class="form-range"
+            id="translateY"
+            min="-200"
+            max="200"
+            v-model="translateY"
+          />
+        </div>
+
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Button Background Color</label>
           <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
         </div>
         <div class="my-3">
           <label for="position" class="form-label">Width</label>
-          <input type="number" class="form-control" min="80" max="500" v-model="options.width" />
+          <input type="number" class="form-control" v-model="wrapperWidth" />
         </div>
         <div class="my-3">
           <label for="position" class="form-label">Height</label>
-          <input type="number" class="form-control" min="80" max="500" v-model="options.height" />
+          <input type="number" class="form-control" v-model="wrapperHeight" />
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label">Padding</label>
+          <input type="number" class="form-control" v-model="wrapperPadding" />
+        </div>
+        <div class="form-check my-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="hasborder"
+            v-model="options.hasBorder"
+          />
+          <label class="form-check-label" for="hasborder"> Border </label>
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label">Border Size</label>
+          <input type="number" class="form-control" v-model="wrapperBorderSize" />
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label">Border Radius</label>
+          <input type="number" class="form-control" v-model="wrapperBorderRadius" />
+        </div>
+        <select class="form-select" v-model="options.borderType">
+          <option value="solid">Solid</option>
+          <option value="dashed">Dashed</option>
+          <option value="dotted">Dotted</option>
+          <option value="double">Double</option>
+        </select>
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Border Color</label>
+          <input type="color" class="w-25" v-model="options.borderColor" />
         </div>
       </div>
       <div class="col">
         <span class="title">Options JSON</span>
         <highlightjs class="code" autodetect :code="JSON.stringify(options, null, 2)" />
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <span class="title">Events</span>
         <highlightjs class="code" autodetect :code="events" />
       </div>
