@@ -17,11 +17,11 @@
     .question {
         font-weight: bold;
         line-height: 1.4em;
-        
+
 
         .options {
             margin: 10px 0px;
-            
+
 
             .option {
                 display: block;
@@ -40,7 +40,43 @@
             }
         }
     }
+
+    &.minimized {
+        transform: scale(0);
+    }
 }
+
+.trigger {
+    opacity: 0;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: var(--button-background-color, #fff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: scale(0.2);
+    transition: all 0.2s ease 0.05s;
+
+    .icon {
+        path {
+            fill: #fff !important;
+        }
+
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    &.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 // Buttons
 .btn {
@@ -119,4 +155,22 @@
 
 .no-border {
     border: none !important;
+}
+
+.slide-fade-enter-active {
+    transition: all 0.2s ease;
+
+}
+
+.slide-fade-leave-active {
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: scale(0.2) translateY(-10px) !important;
+    overflow: hidden !important;
+    transform-style: preserve-3d;
 }
