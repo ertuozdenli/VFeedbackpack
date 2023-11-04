@@ -5,8 +5,12 @@ import type { Options } from '@/components/types/options'
 import type { Question } from '@/components/types/question'
 
 // Components
-import checkCircle from '@/components/icons/IconCheck.vue'
+import MultipleChoice from '@/components/options/MultipleChoice.vue'
 import thankYou from '@/components/thank-you.vue'
+
+// Icons
+import iconClose from '@/components/icons/IconClose.vue'
+import iconStar from '@/components/icons/IconStar.vue'
 
 // Defaults
 import { defaultOptions } from './defaultOptions'
@@ -36,6 +40,19 @@ watchEffect(() => {
 // Computed Properties
 const optionSlug = computed(() => {
   return 'option' + activeQuestionIndex.value
+})
+
+const getOptionComponent = computed(() => {
+  let activeQuestionOptionComponent = 'MultipleChoice'
+  switch (questions[activeQuestionIndex.value].type) {
+    case 'rate':
+      activeQuestionOptionComponent = 'start'
+      break
+    case 'emoji':
+      activeQuestionOptionComponent = 'start'
+      break
+  }
+  return activeQuestionOptionComponent
 })
 
 const buttonLabel = computed(() => {
@@ -94,21 +111,31 @@ function nextStep() {
       ]"
       v-if="options.active && !options.isMinimized"
     >
-      <thankYou v-if="isFeedbackEnd" :label="options.labels.thankYou" />
+      <button
+        class="close"
+        @click="options.isMinimized = true"
+        v-if="options.showCloseButton && !isFeedbackEnd"
+      >
+        <icon-close />
+      </button>
+      <thank-you v-if="isFeedbackEnd" :label="options.labels.thankYou" />
       <div class="question" v-if="!isFeedbackEnd">
         <span class="label">{{ questions[activeQuestionIndex].label }}</span>
+        {{ getOptionComponent }}
         <div class="options">
-          <div
-            class="option"
-            v-for="(option, index) in questions[activeQuestionIndex].options"
-            :key="index"
-            @click="answers[activeQuestionIndex] = index"
-          >
-            <check-circle class="check-circle" :checked="answers[activeQuestionIndex] === index" />
-            <label :for="optionSlug + index">
-              {{ option }}
-            </label>
-          </div>
+          <MultipleChoice
+            :activeQuestionIndex="activeQuestionIndex"
+            :activeQuestionAnswerIndex="answers[activeQuestionIndex]"
+            :options="questions[activeQuestionIndex].options"
+          ></MultipleChoice>
+          <KeepAlive>
+            <component
+              :is="getOptionComponent"
+              :activeQuestionIndex="activeQuestionIndex"
+              :activeQuestionAnswerIndex="answers[activeQuestionIndex]"
+              :options="questions[activeQuestionIndex].options"
+            ></component>
+          </KeepAlive>
         </div>
       </div>
       <button

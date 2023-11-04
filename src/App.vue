@@ -13,6 +13,25 @@ const positions = [
 
 let events = ref<String>('')
 
+const questions = ref([
+  {
+    type: 'multiple-choice',
+    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
+    options: ['yes', 'no']
+  },
+  {
+    type: 'multiple-choice',
+    label:
+      'Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?',
+    options: ['yes', 'no', 'maybe']
+  },
+  {
+    type: 'multiple-choice',
+    label: '2.Did you liked v-feedback?',
+    options: ['yes', 'no', 'hell no']
+  }
+])
+
 const options = ref({
   position: 'bottomRight',
   width: '350px',
@@ -23,7 +42,7 @@ const options = ref({
   active: true,
   showCloseButton: true,
   hasBorder: true,
-  backgroundColor: '#fff',
+  backgroundColor: '#ffffff',
   textColor: '#1a1a1a',
   buttonBackgroundColor: '#41B883',
   buttonLabelColor: '#fff',
@@ -130,6 +149,16 @@ function done(value: Object) {
           <label class="form-check-label" for="isMinimized"> Minimized </label>
         </div>
 
+        <div class="form-check my-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="showCloseButton"
+            v-model="options.showCloseButton"
+          />
+          <label class="form-check-label" for="showCloseButton"> Show Close Button </label>
+        </div>
+
         <div class="my-3">
           <label class="form-label">Next Button Label</label>
           <input type="text" class="form-control" v-model="options.labels.buttonNext" />
@@ -169,7 +198,14 @@ function done(value: Object) {
             v-model="translateY"
           />
         </div>
-
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Background Color</label>
+          <input type="color" class="w-25" v-model="options.backgroundColor" />
+        </div>
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Text Color</label>
+          <input type="color" class="w-25" v-model="options.textColor" />
+        </div>
         <div class="my-3">
           <label for="position" class="form-label d-block">Button Background Color</label>
           <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
@@ -238,7 +274,12 @@ function done(value: Object) {
     </div>
     <div class="text-center my-5">Created by @ertuozdenli with ❤️</div>
   </div>
-  <VFeedback :options="options" @answered="answered" @done="done"></VFeedback>
+  <VFeedback
+    :options="options"
+    :questions="questions"
+    @answered="answered"
+    @done="done"
+  ></VFeedback>
 </template>
 
 <style>
