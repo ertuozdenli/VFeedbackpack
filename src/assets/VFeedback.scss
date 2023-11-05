@@ -1,6 +1,7 @@
 #VFeedback {
     width: var(--width);
     min-height: var(--height);
+    max-width: calc(100% - 30px);
     padding: var(--padding);
     background: var(--bg-color);
     border-radius: var(--border-radius);
@@ -93,17 +94,6 @@
         transform: scale(0.2);
     }
 
-
-    .icon {
-        path {
-            fill: #fff !important;
-        }
-
-        width: 80%;
-        height: 80%;
-        object-fit: contain;
-        object-position: center;
-    }
 
     &.active {
         opacity: 1;

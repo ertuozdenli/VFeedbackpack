@@ -54,7 +54,8 @@ const options = ref({
   backgroundColor: '#ffffff',
   textColor: '#1a1a1a',
   buttonBackgroundColor: '#41B883',
-  buttonLabelColor: '#fff',
+  minimizedIconColor: '#ffffff',
+  buttonLabelColor: '#ffffff',
   translateX: '0px',
   translateY: '0px',
   borderColor: '#f0f0f0',
@@ -158,6 +159,11 @@ function done(value: Object) {
           <label class="form-check-label" for="isMinimized"> Minimized </label>
         </div>
 
+        <div class="my-3">
+          <label for="position" class="form-label d-block">Minimized Icon Color</label>
+          <input type="color" class="w-25" v-model="options.minimizedIconColor" />
+        </div>
+
         <div class="form-check my-3">
           <input
             class="form-check-input"
@@ -216,7 +222,9 @@ function done(value: Object) {
           <input type="color" class="w-25" v-model="options.textColor" />
         </div>
         <div class="my-3">
-          <label for="position" class="form-label d-block">Button Background Color</label>
+          <label for="position" class="form-label d-block"
+            >Button Background Color [Main and Floating]</label
+          >
           <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
         </div>
         <div class="my-3">
@@ -283,12 +291,8 @@ function done(value: Object) {
     </div>
     <div class="text-center my-5">Created by @ertuozdenli with ❤️</div>
   </div>
-  <VFeedback
-    :options="options"
-    :questions="questions"
-    @answered="answered"
-    @done="done"
-  ></VFeedback>
+  <VFeedback :options="options" :questions="questions" @answered="answered" @done="done">
+  </VFeedback>
 </template>
 
 <style>

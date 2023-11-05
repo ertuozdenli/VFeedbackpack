@@ -16,6 +16,7 @@ export type Options = {
     textColor: String,
     buttonBackgroundColor: String,
     buttonLabelColor: String,
+    minimizedIconColor: String,
     translateX: String,
     translateY: String,
     borderColor: String,

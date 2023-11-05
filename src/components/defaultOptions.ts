@@ -13,6 +13,7 @@ export const defaultOptions: Options = {
     backgroundColor: '#fff',
     textColor: '#1a1a1a',
     buttonBackgroundColor: '#41B883',
+    minimizedIconColor: '#fff',
     buttonLabelColor: '#fff',
     translateX: '0px',
     translateY: '0px',
