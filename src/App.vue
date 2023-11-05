@@ -16,28 +16,16 @@ let events = ref<String>('')
 const questions = ref([
   {
     type: 'multiple-choice',
-    label:
-      'Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-    options: ['yes', 'no', 'maybe']
+    label: 'Did you liked v-feedback?',
+    options: ['Yes!', 'No', 'Enjoyed 🤩']
   },
   {
     type: 'emoji',
-    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?'
+    label: 'Did you liked v-feedback emoji type question?'
   },
   {
     type: 'rate',
-    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?'
-  },
-  {
-    type: 'multiple-choice',
-    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-    options: ['yes', 'no']
-  },
-  {
-    type: 'multiple-choice',
-    label:
-      'Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-    options: ['yes', 'no', 'maybe']
+    label: 'Did you liked v-feedback rate type question?'
   }
 ])
 
