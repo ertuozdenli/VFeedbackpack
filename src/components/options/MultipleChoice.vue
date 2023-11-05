@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const props = defineProps<{
   options?: Array<String>
@@ -21,12 +21,23 @@ let activeQuestionIndex = ref(props.activeQuestionIndex)
 const optionSlug = computed(() => {
   return 'option' + activeQuestionIndex.value
 })
+
+const selectedOption = ref<Number>()
+const emit = defineEmits(['selected'])
+
+watch(selectedOption, function () {
+  emit('selected', selectedOption.value)
+})
 </script>
 
 <template>
   <!-- Multi Start -->
-  <div class="option" v-for="(option, index) in options" :key="index">
-    <!-- @click="answers[activeQuestionIndex] = index" -->
+  <div
+    class="option"
+    v-for="(option, index) in options"
+    :key="index"
+    @click="selectedOption = index"
+  >
     <icon-circle class="check-circle" :checked="activeQuestionAnswerIndex === index"></icon-circle>
     <label :for="optionSlug + index">
       {{ option }}

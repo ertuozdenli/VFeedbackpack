@@ -7,11 +7,11 @@ import type { Question } from '@/components/types/question'
 // Components
 import MultipleChoice from '@/components/options/MultipleChoice.vue'
 import RateChoice from '@/components/options/RateChoice.vue'
+import EmojiChoice from '@/components/options/EmojiChoice.vue'
 import thankYou from '@/components/thank-you.vue'
 
 // Icons
 import iconClose from '@/components/icons/IconClose.vue'
-import iconStar from '@/components/icons/IconStar.vue'
 
 // Defaults
 import { defaultOptions } from './defaultOptions'
@@ -39,10 +39,6 @@ watchEffect(() => {
 })
 
 // Computed Properties
-const optionSlug = computed(() => {
-  return 'option' + activeQuestionIndex.value
-})
-
 const getOptionComponent = computed(() => {
   let activeQuestionOptionComponent
   switch (questions[activeQuestionIndex.value].type) {
@@ -50,7 +46,7 @@ const getOptionComponent = computed(() => {
       activeQuestionOptionComponent = RateChoice
       break
     case 'emoji':
-      activeQuestionOptionComponent = 'start'
+      activeQuestionOptionComponent = EmojiChoice
       break
     default:
       activeQuestionOptionComponent = MultipleChoice
@@ -102,6 +98,10 @@ function nextStep() {
 
   isFeedbackEnd.value = true
 }
+
+function setAnswer(selectedOptionIndex: Number) {
+  answers.value[activeQuestionIndex.value] = selectedOptionIndex
+}
 </script>
 
 <template>
@@ -131,6 +131,7 @@ function nextStep() {
             :activeQuestionIndex="activeQuestionIndex"
             :activeQuestionAnswerIndex="answers[activeQuestionIndex]"
             :options="questions[activeQuestionIndex].options"
+            @selected="setAnswer"
           ></component>
         </div>
       </div>
@@ -178,11 +179,6 @@ function nextStep() {
 
 .trigger {
   --button-background-color: v-bind(options.buttonBackgroundColor);
-  .fill {
-    // fill: var(--button-background-color) !important;
-    // TODO: Add icon color variable
-    // filter: invert(100%);
-  }
 }
 @import '@/assets/VFeedback.scss';
 </style>

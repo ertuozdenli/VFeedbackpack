@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import iconStar from '@/components/icons/IconStar.vue'
 const selectedRate = ref()
+const emit = defineEmits(['selected'])
+
+watch(selectedRate, function () {
+  emit('selected', selectedRate.value)
+})
 </script>
 
 <template>
