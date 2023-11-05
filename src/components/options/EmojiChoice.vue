@@ -40,11 +40,11 @@ watch(selectedRate, function () {
 <template>
   <div class="rate">
     <component
-      v-for="i = 0 in 4"
-      :is="getComponent(i)"
-      :key="i"
-      :isFilled="i == selectedRate"
-      @mouseover="selectedRate = i"
+      v-for="(i = 1,index) in 5"
+      :is="getComponent(index)"
+      :key="index"
+      :isFilled="index == selectedRate"
+      @mouseover="selectedRate = index"
     >
     </component>
   </div>

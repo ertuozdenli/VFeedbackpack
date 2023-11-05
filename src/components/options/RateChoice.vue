@@ -12,10 +12,10 @@ watch(selectedRate, function () {
 <template>
   <div class="rate">
     <icon-star
-      v-for="i = 0 in 4"
-      :key="i"
-      :isFilled="i <= selectedRate"
-      @mouseover="selectedRate = i"
+      v-for="(i = 1,index) in 5"
+      :key="index"
+      :isFilled="index <= selectedRate"
+      @mouseover="selectedRate = index"
     >
     </icon-star>
   </div>
