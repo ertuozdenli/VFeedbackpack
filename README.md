@@ -100,7 +100,7 @@ It's returns answered question with answer.
 2. **@done**
 It's triggered end of questions and returns whole questions and answers 
 
->**Answer value a option index**
+>**Answer value is an option index**
 
 ```html
 <VFeedback :options="options" :questions="questions" @answered="answered" @done="done">
