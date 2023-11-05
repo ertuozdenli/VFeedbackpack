@@ -23,6 +23,7 @@ const emit = defineEmits(['answered', 'done'])
 const props = defineProps<{
   options: Options
   questions: Array<Question>
+  answers: Array<String | Number>
 }>()
 
 let options = ref({ ...defaultOptions, ...props.options })

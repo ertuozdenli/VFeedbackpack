@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import icon0 from '@/components/icons/emojis/IconEmoji0.vue'
 import icon1 from '@/components/icons/emojis/IconEmoji1.vue'
 import icon2 from '@/components/icons/emojis/IconEmoji2.vue'
 import icon3 from '@/components/icons/emojis/IconEmoji3.vue'
 import icon4 from '@/components/icons/emojis/IconEmoji4.vue'
-import icon5 from '@/components/icons/emojis/IconEmoji5.vue'
 
 function getComponent(iconNumber: Number) {
   let comp
   switch (iconNumber) {
+    case 0:
+      comp = icon0
+      break
     case 1:
       comp = icon1
       break
@@ -20,9 +23,6 @@ function getComponent(iconNumber: Number) {
       break
     case 4:
       comp = icon4
-      break
-    case 5:
-      comp = icon5
       break
   }
   return comp
@@ -40,7 +40,7 @@ watch(selectedRate, function () {
 <template>
   <div class="rate">
     <component
-      v-for="i = 1 in 5"
+      v-for="i = 0 in 4"
       :is="getComponent(i)"
       :key="i"
       :isFilled="i == selectedRate"

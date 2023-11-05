@@ -10,10 +10,6 @@ const props = defineProps<{
 // Icons
 import iconCircle from '@/components/icons/IconCheck.vue'
 
-// defineComponent({
-//   name: 'MultipleChoice'
-// })
-
 let options = ref(props.options)
 let activeQuestionIndex = ref(props.activeQuestionIndex)
 
