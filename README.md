@@ -11,3 +11,18 @@ You can install the v-feedback plugin using npm or yarn.
 ```bash
 npm install v-feedback@latest
 ```
+
+Import the plugin
+
+```javascript
+import { createApp } from 'vue'
+import vFeedback from 'v-feedback'
+
+const app = createApp(App)
+app.use(vFeedback)
+```
+
+Use in your Vue App
+```html
+<v-feedback :options="options" :questions="questions">
+```

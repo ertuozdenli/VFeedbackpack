@@ -120,7 +120,7 @@ function done(value: Object) {
       <highlightjs
         language="html"
         class="code npm my-5"
-        code='<v-feedback :options="options" :questions="questions">'
+        code='<v-feedback :options="options" :questions="questions"></v-feedback>'
       />
     </div>
     <div class="row gap-3 my-5">
@@ -149,7 +149,7 @@ function done(value: Object) {
 
         <div class="my-3">
           <label for="position" class="form-label d-block">Minimized Icon Color</label>
-          <input type="color" class="w-25" v-model="options.minimizedIconColor" />
+          <input type="color" class="w-lg-25" v-model="options.minimizedIconColor" />
         </div>
 
         <div class="form-check my-3">
@@ -203,17 +203,17 @@ function done(value: Object) {
         </div>
         <div class="my-3">
           <label for="position" class="form-label d-block">Background Color</label>
-          <input type="color" class="w-25" v-model="options.backgroundColor" />
+          <input type="color" class="w-lg-25" v-model="options.backgroundColor" />
         </div>
         <div class="my-3">
           <label for="position" class="form-label d-block">Text Color</label>
-          <input type="color" class="w-25" v-model="options.textColor" />
+          <input type="color" class="w-lg-25" v-model="options.textColor" />
         </div>
         <div class="my-3">
           <label for="position" class="form-label d-block"
             >Button Background Color [Main and Floating]</label
           >
-          <input type="color" class="w-25" v-model="options.buttonBackgroundColor" />
+          <input type="color" class="w-lg-25" v-model="options.buttonBackgroundColor" />
         </div>
         <div class="my-3">
           <label for="position" class="form-label">Width</label>
@@ -252,7 +252,7 @@ function done(value: Object) {
         </select>
         <div class="my-3">
           <label for="position" class="form-label d-block">Border Color</label>
-          <input type="color" class="w-25" v-model="options.borderColor" />
+          <input type="color" class="w-lg-25" v-model="options.borderColor" />
         </div>
         <div class="form-check my-3">
           <input
@@ -265,7 +265,7 @@ function done(value: Object) {
         </div>
         <div class="my-3">
           <label for="position" class="form-label d-block">Shadow Color</label>
-          <input type="color" class="w-25" v-model="options.shadowColor" />
+          <input type="color" class="w-lg-25" v-model="options.shadowColor" />
         </div>
       </div>
       <div class="col">
