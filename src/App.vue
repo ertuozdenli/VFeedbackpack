@@ -116,7 +116,7 @@ function done(value: Object) {
       Fully customizable multi-question feedback component with diverse question types.
     </p>
     <div class="text-center">
-      <highlightjs class="code npm my-5" :code="'npm install v-feedback@latest'" />
+      <highlightjs class="code npm my-5" :code="'npm install v-feedbackpack@latest'" />
       <highlightjs
         language="html"
         class="code npm my-5"

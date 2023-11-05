@@ -3,21 +3,21 @@
 
 **Fully customizable multi-question feedback component with diverse question types.**
 
-v-feedback is a Vue 3 plugin that provides feedback and interaction features for your Vue.js applications. It allows you to easily integrate feedbacks into your web applications.
+v-feedbackpack is a Vue 3 plugin that provides feedback and interaction features for your Vue.js applications. It allows you to easily integrate feedbacks into your web applications.
 
 ## Installation
 
-You can install the v-feedback plugin using npm or yarn.
+You can install the v-feedbackpack plugin using npm or yarn.
 
 ```bash
-npm install v-feedback@latest
+npm install v-feedbackpack@latest
 ```
 
 Import the plugin
 
 ```javascript
 import { createApp } from 'vue'
-import vFeedback from 'v-feedback'
+import vFeedback from 'v-feedbackpack'
 
 const app = createApp(App)
 app.use(vFeedback)
@@ -79,16 +79,16 @@ There are 3 types of questions;
 const options = ref([
   {
     type: 'multiple-choice',
-    label: 'Did you liked v-feedback?',
+    label: 'Did you liked v-feedbackpack?',
     options: ['Yes!', 'No', 'Enjoyed 🤩']
   },
   {
     type: 'emoji',
-    label: 'Did you liked v-feedback emoji type question?'
+    label: 'Did you liked v-feedbackpack emoji type question?'
   },
   {
     type: 'rate',
-    label: 'Did you liked v-feedback rate type question?'
+    label: 'Did you liked v-feedbackpack rate type question?'
   }
 ])
 ```
