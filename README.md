@@ -1,5 +1,5 @@
 
-![v-feedback](./src/assets/images/v-feedback-logo.svg)
+![v-feedback](https://raw.githubusercontent.com/ertuozdenli/VFeedbackpack/5fd7a285be3c01bcf7037bd5d0ad7f5f4d056a19/src/assets/images/v-feedback-logo.svg)
 
 **Fully customizable multi-question feedback component with diverse question types.**
 
@@ -30,7 +30,7 @@ Use in your Vue App
 <v-feedback :options="options" :questions="questions">
 ```
 ## Demo page 🚀
-**[Demo Page is available here](https://ertuozdenli.github.io/VFeedback/)**
+**[Demo Page is available here](https://ertuozdenli.github.io/VFeedbackpack/)**
 
 https://github.com/ertuozdenli/VFeedback/assets/29134095/4a3fab04-bc08-4c64-97b1-f25466727f43
 
