@@ -1,17 +1,15 @@
 export const defaultQuestions: Array<Object> = [
     {
         type: 'multiple-choice',
-        label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-        options: ['yes', 'no']
+        label: 'Did you liked v-feedback?',
+        options: ['Yes!', 'No', 'Enjoyed 🤩']
     },
     {
-        type: 'multiple-choice',
-        label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?Did you liked v-feedback, lorem ipsum dolor sit ametus?',
-        options: ['yes', 'no', 'maybe']
+        type: 'emoji',
+        label: 'Did you liked v-feedback emoji type question?'
     },
     {
-        type: 'multiple-choice',
-        label: '2.Did you liked v-feedback?',
-        options: ['yes', 'no', 'hell no']
+        type: 'rate',
+        label: 'Did you liked v-feedback rate type question?'
     }
 ];
