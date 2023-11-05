@@ -120,6 +120,15 @@ function done(value: Object) {
       <highlightjs
         language="html"
         class="code npm my-5"
+        code="import vFeedback from 'v-feedbackpack'
+import 'v-feedbackpack/dist/VFeedback.css'
+
+const app = createApp(App)
+app.use(vFeedback)"
+      />
+      <highlightjs
+        language="html"
+        class="code npm my-5"
         code='<v-feedback :options="options" :questions="questions"></v-feedback>'
       />
     </div>

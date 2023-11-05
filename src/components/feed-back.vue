@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import "@/assets/VFeedback.scss";
 import { ref, computed, watchEffect } from 'vue'
 // Types
 import type { Options } from '@/components/types/options'
@@ -23,7 +24,6 @@ const emit = defineEmits(['answered', 'done'])
 const props = defineProps<{
   options: Options
   questions: Array<Question>
-  answers: Array<String | Number>
 }>()
 
 let options = ref({ ...defaultOptions, ...props.options })
@@ -200,7 +200,7 @@ function setAnswer(selectedOptionIndex: Number) {
     fill: var(--minimized-icon-color) !important;
   }
 }
-@import '@/assets/VFeedback.scss';
+// @import '@/assets/VFeedback.scss';
 </style>
 
 <style lang="scss">

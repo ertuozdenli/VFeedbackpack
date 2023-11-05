@@ -7,6 +7,7 @@
   "files": [
     "dist"
   ],
+  "licence": "MIT",
   "main": "./dist/VFeedback.umd.cjs",
   "module": "./dist/VFeedback.js",
   "types": "./dist/VFeedback.js",

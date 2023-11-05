@@ -13,11 +13,13 @@ You can install the v-feedbackpack plugin using npm or yarn.
 npm install v-feedbackpack@latest
 ```
 
-Import the plugin
+Import the plugin and styles
 
 ```javascript
 import { createApp } from 'vue'
+
 import vFeedback from 'v-feedbackpack'
+import "v-feedbackpack/dist/VFeedback.css"
 
 const app = createApp(App)
 app.use(vFeedback)
