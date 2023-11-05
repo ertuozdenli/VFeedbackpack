@@ -24,17 +24,31 @@ const optionSlug = computed(() => {
 </script>
 
 <template>
-  <div>
-    {{  activeQuestionIndex  }} -
-    {{  activeQuestionAnswerIndex  }}
-    <!-- Multi Start -->
-    <div class="option" v-for="(option, index) in options" :key="index">
-      <!-- @click="answers[activeQuestionIndex] = index" -->
-      <icon-circle class="check-circle" :checked="activeQuestionAnswerIndex === index" />
-      <label :for="optionSlug + index">
-        {{ option }}
-      </label>
-    </div>
-    <!-- Multi End -->
+  <!-- Multi Start -->
+  <div class="option" v-for="(option, index) in options" :key="index">
+    <!-- @click="answers[activeQuestionIndex] = index" -->
+    <icon-circle class="check-circle" :checked="activeQuestionAnswerIndex === index"></icon-circle>
+    <label :for="optionSlug + index">
+      {{ option }}
+    </label>
   </div>
+  <!-- Multi End -->
 </template>
+
+<style scoped>
+.option {
+  display: block;
+  margin-top: 0.2em;
+  padding: 3px 0px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: normal;
+  cursor: pointer;
+
+  label {
+    cursor: pointer;
+    flex: 1;
+  }
+}
+</style>

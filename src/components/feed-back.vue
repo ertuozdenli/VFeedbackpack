@@ -6,6 +6,7 @@ import type { Question } from '@/components/types/question'
 
 // Components
 import MultipleChoice from '@/components/options/MultipleChoice.vue'
+import RateChoice from '@/components/options/RateChoice.vue'
 import thankYou from '@/components/thank-you.vue'
 
 // Icons
@@ -43,15 +44,18 @@ const optionSlug = computed(() => {
 })
 
 const getOptionComponent = computed(() => {
-  let activeQuestionOptionComponent = 'MultipleChoice'
+  let activeQuestionOptionComponent
   switch (questions[activeQuestionIndex.value].type) {
     case 'rate':
-      activeQuestionOptionComponent = 'start'
+      activeQuestionOptionComponent = RateChoice
       break
     case 'emoji':
       activeQuestionOptionComponent = 'start'
       break
+    default:
+      activeQuestionOptionComponent = MultipleChoice
   }
+
   return activeQuestionOptionComponent
 })
 
@@ -121,21 +125,13 @@ function nextStep() {
       <thank-you v-if="isFeedbackEnd" :label="options.labels.thankYou" />
       <div class="question" v-if="!isFeedbackEnd">
         <span class="label">{{ questions[activeQuestionIndex].label }}</span>
-        {{ getOptionComponent }}
         <div class="options">
-          <MultipleChoice
+          <component
+            :is="getOptionComponent"
             :activeQuestionIndex="activeQuestionIndex"
             :activeQuestionAnswerIndex="answers[activeQuestionIndex]"
             :options="questions[activeQuestionIndex].options"
-          ></MultipleChoice>
-          <KeepAlive>
-            <component
-              :is="getOptionComponent"
-              :activeQuestionIndex="activeQuestionIndex"
-              :activeQuestionAnswerIndex="answers[activeQuestionIndex]"
-              :options="questions[activeQuestionIndex].options"
-            ></component>
-          </KeepAlive>
+          ></component>
         </div>
       </div>
       <button

@@ -32,23 +32,6 @@
 
         .options {
             margin: 10px 0px;
-
-
-            .option {
-                display: block;
-                margin-top: 0.2em;
-                padding: 3px 0px;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                font-weight: normal;
-                cursor: pointer;
-
-                label {
-                    cursor: pointer;
-                    flex: 1;
-                }
-            }
         }
     }
 

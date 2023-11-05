@@ -15,6 +15,10 @@ let events = ref<String>('')
 
 const questions = ref([
   {
+    type: 'rate',
+    label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?'
+  },
+  {
     type: 'multiple-choice',
     label: 'Did you liked v-feedback, lorem ipsum dolor sit ametus?',
     options: ['yes', 'no']
